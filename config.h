@@ -69,6 +69,7 @@ static const char *browser[]  = { "librewolf", NULL };
 static const char *volmute[]  = { "amixer", "-q", "sset", "Master", "toggle", NULL };
 static const char *volup[]    = { "amixer", "-q", "sset", "Master", "5%+", NULL };
 static const char *voldown[]  = { "amixer", "-q", "sset", "Master", "5%-", NULL };
+static const char *micmute[]  = { "amixer", "-q", "sset", "Capture", "toggle", NULL };
 
 #include "shiftview.c"
 static const Key keys[] = {
@@ -105,12 +106,14 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_u,      swalstopsel,    {0} },
 	{ MODKEY,			XK_Right,  shiftview,      {.i = +1 } },
 	{ MODKEY,			XK_Left,   shiftview,      {.i = -1 } },
+	{ 0,			        0x1008ffb2,   spawn,       {.v = micmute } },	
 	{ 0,		        	0x1008ff12,   spawn,       {.v = volmute } },
 	{ 0,     			0x1008ff11,   spawn,       {.v = voldown } },
-	{ 0,			        0x1008ff13,   spawn,       {.v = volup } },
+	{ 0,			        0x1008ff13,   spawn,       {.v = volup   } },
+	{ ControlMask,		       	XK_F9,    spawn,           {.v = micmute } },
 	{ ControlMask,		       	XK_F10,   spawn,           {.v = volmute } },
 	{ ControlMask,			XK_F11,   spawn,           {.v = voldown } },
-	{ ControlMask,		        XK_F12,   spawn,           {.v = volup } },
+	{ ControlMask,		        XK_F12,   spawn,           {.v = volup   } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
