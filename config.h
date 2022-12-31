@@ -85,7 +85,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
-	{ MODKEY,             XK_q,      killclient,     {0} },
+	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -105,9 +105,12 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_u,      swalstopsel,    {0} },
 	{ MODKEY,			XK_Right,  shiftview,      {.i = +1 } },
 	{ MODKEY,			XK_Left,   shiftview,      {.i = -1 } },
+	{ 0,		        	0x1008ff12,   spawn,       {.v = volmute } },
 	{ 0,     			0x1008ff11,   spawn,       {.v = voldown } },
 	{ 0,			        0x1008ff13,   spawn,       {.v = volup } },
-	{ 0,		        	0x1008ff12,   spawn,       {.v = volmute } },
+	{ ControlMask,		       	XK_F10,   spawn,           {.v = volmute } },
+	{ ControlMask,			XK_F11,   spawn,           {.v = voldown } },
+	{ ControlMask,		        XK_F12,   spawn,           {.v = volup } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
