@@ -66,6 +66,9 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *browser[]  = { "librewolf", NULL };
+static const char *volmute[]  = { "amixer", "-q", "sset", "Master", "toggle", NULL };
+static const char *volup[]    = { "amixer", "-q", "sset", "Master", "5%+", NULL };
+static const char *voldown[]  = { "amixer", "-q", "sset", "Master", "5%-", NULL };
 
 #include "shiftview.c"
 static const Key keys[] = {
@@ -101,7 +104,10 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Tab,    viewprev,       {0} },
 	{ MODKEY,                       XK_u,      swalstopsel,    {0} },
 	{ MODKEY,			XK_Right,  shiftview,      {.i = +1 } },
-	{ MODKEY,			XK_Left,  shiftview,      {.i = -1 } },
+	{ MODKEY,			XK_Left,   shiftview,      {.i = -1 } },
+	{ 0,     			0x1008ff11,   spawn,       {.v = voldown } },
+	{ 0,			        0x1008ff13,   spawn,       {.v = volup } },
+	{ 0,		        	0x1008ff12,   spawn,       {.v = volmute } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
