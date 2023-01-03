@@ -29,6 +29,9 @@ static const Rule rules[] = {
 	 */
 	/* class         instance    title       tags mask     switchtotag    isfloating   monitor */
 	{ "LibreWolf",   NULL,       NULL,       1 << 1,       1,             0,           -1 },
+	{ "Telegram",    NULL,       NULL,       2 << 2,       0,             0,           -1 },
+	{ "Session",     NULL,       NULL,       2 << 2,       0,             0,           -1 },
+	{ "KeePassXC",   NULL,       NULL,       8 << 8,       0,             0,           -1 },
 };
 
 /* window swallowing */
@@ -71,6 +74,7 @@ static const char *volup[]    = { "amixer", "-q", "sset", "Master", "5%+", NULL 
 static const char *voldown[]  = { "amixer", "-q", "sset", "Master", "5%-", NULL };
 static const char *micmute[]  = { "amixer", "-q", "sset", "Capture", "toggle", NULL };
 
+#include <X11/XF86keysym.h>
 #include "shiftview.c"
 static const Key keys[] = {
 	/* modifier                     key        function        argument */	
@@ -105,10 +109,10 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_u,      swalstopsel,    {0} },
 	{ MODKEY,			XK_Right,  shiftview,      {.i = +1 } },
 	{ MODKEY,			XK_Left,   shiftview,      {.i = -1 } },
-	{ 0,			        0x1008ffb2,   spawn,       {.v = micmute } },	
-	{ 0,		        	0x1008ff12,   spawn,       {.v = volmute } },
-	{ 0,     			0x1008ff11,   spawn,       {.v = voldown } },
-	{ 0,			        0x1008ff13,   spawn,       {.v = volup   } },
+	{ 0,			        XF86XK_AudioMicMute,     spawn,       {.v = micmute } },	
+	{ 0,		        	XF86XK_AudioMute,        spawn,       {.v = volmute } },
+	{ 0,     			XF86XK_AudioLowerVolume, spawn,       {.v = voldown } },
+	{ 0,			        XF86XK_AudioRaiseVolume, spawn,       {.v = volup   } },
 	{ ControlMask,		       	XK_F9,    spawn,           {.v = micmute } },
 	{ ControlMask,		       	XK_F10,   spawn,           {.v = volmute } },
 	{ ControlMask,			XK_F11,   spawn,           {.v = voldown } },
